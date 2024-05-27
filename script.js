@@ -6,7 +6,7 @@ let msg=document.querySelector("#msg");
 let main=document.querySelector("#main");
 
 // console.log(boxes)
-
+let count=0;
 let turnO = true;
 
 const winPattern = [
@@ -29,6 +29,7 @@ const enableBoxes=()=>{
 
 const resetGame=()=>{
   turnO=true;
+  count=0;
   enableBoxes();
   main.style.opacity="1";
   main.style.display="flex";
@@ -45,6 +46,7 @@ boxes.forEach((box) => {
       turnO = true;
     }
     box.disabled = true;
+    count++;
     checkWinner();
     // console.log("button was clicked");
   });
@@ -57,7 +59,12 @@ const disableBoxes=()=>{
 };
 
 const showWinner=(winner)=>{
-  msg.innerText=`Congratulatins, Winner is ${winner}`;
+  if (count===9){
+    msg.innerText="Game DRAW!";
+  }
+  else{
+    msg.innerText=`Congratulatins, Winner is ${winner}`;
+  }
   msgcontainer.style.display="flex";
   // msgcontainer.style.opacity="1";
   main.style.opacity="0";
@@ -76,6 +83,9 @@ const checkWinner = () => {
             // console.log("winner");
             showWinner(val1);
             // alert("winner")
+        }
+        if(count===9){
+          showWinner(count)
         }
     }
   }
