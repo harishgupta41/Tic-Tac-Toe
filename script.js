@@ -3,6 +3,7 @@ let resetBtn = document.querySelector("#reset-btn");
 let newBtn=document.querySelector("#new-btn");
 let msgcontainer=document.querySelector(".msg-container");
 let msg=document.querySelector("#msg");
+let main=document.querySelector("#main");
 
 // console.log(boxes)
 
@@ -29,6 +30,8 @@ const enableBoxes=()=>{
 const resetGame=()=>{
   turnO=true;
   enableBoxes();
+  main.style.opacity="1";
+  main.style.display="flex";
   msgcontainer.style.display="none";
 };
 
@@ -56,6 +59,9 @@ const disableBoxes=()=>{
 const showWinner=(winner)=>{
   msg.innerText=`Congratulatins, Winner is ${winner}`;
   msgcontainer.style.display="flex";
+  // msgcontainer.style.opacity="1";
+  main.style.opacity="0";
+  main.style.display="none";
   disableBoxes();
 };
 
@@ -67,7 +73,7 @@ const checkWinner = () => {
 
     if(val1 !="" && val2!="" && val3!=""){
         if(val1===val2 && val2===val3 && val1===val3){
-            console.log("winner");
+            // console.log("winner");
             showWinner(val1);
             // alert("winner")
         }
